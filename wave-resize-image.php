@@ -48,7 +48,10 @@ function wave_resize_image_url( $url, $args ) {
 	
 	$h = ( isset( $height ) ? '&h='.$height : '' );
 	
-	return  esc_url("/wp-content/blogs.dir/".$blog_id."/files".$exploded[1]."?b=".$blog_id."&w=".$width.$h.'&zc='.$zc );
+	if( defined( 'SUBDOMAIN_INSTALL') &&  SUBDOMAIN_INSTALL)
+		return get_site_url().esc_url( "/wp-content/blogs.dir/".$blog_id."/files".$exploded[1]."?b=".$blog_id."&w=".$width.$h.'&zc='.$zc )
+	else
+		return  esc_url( "/wp-content/blogs.dir/".$blog_id."/files".$exploded[1]."?b=".$blog_id."&w=".$width.$h.'&zc='.$zc );
 }
 
 /**

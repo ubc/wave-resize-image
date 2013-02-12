@@ -88,6 +88,6 @@ function wave_resize_featured_image_url( $post_id, $width, $height=null, $zc=1 )
 function wave_resize_featured_image($post_id, $width, $height=null, $zc=1 ) {
 
 	$url = wave_resize_featured_image_url($post_id, $width, $height, $zc);
-	return '<img src="'.$url.'" width="'.esc_attr( $width ).'" class="'.esc_attr( $class ).'" class="attachment-resized" />';
+	return '<img src="'.$url.'" width="'.esc_attr( $width ).'" class="attachment-resized" />';
 }
 

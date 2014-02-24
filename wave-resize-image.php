@@ -45,9 +45,18 @@ function wave_resize_image_url( $url, $args ) {
 	), $args ) );
 	
 	$exploded = explode( 'files', $url);
-	
+
+	$height = 	filter_var( $height, FILTER_SANITIZE_NUMBER_INT );
+	$width 	= 	filter_var( $width, FILTER_SANITIZE_NUMBER_INT );
 	$h = ( isset( $height ) ? '&h='.$height : '' );
 	
+	// we don't find 
+	if( $url == $exploded[0] ) {
+		return esc_url( $url."?w=".$width.$h.'&zc='.$zc );
+		
+	}
+	
+
 	if( defined( 'SUBDOMAIN_INSTALL') &&  SUBDOMAIN_INSTALL )
 		return get_site_url().esc_url( "/wp-content/blogs.dir/".$blog_id."/files".$exploded[1]."?b=".$blog_id."&w=".$width.$h.'&zc='.$zc );
 	else
@@ -90,4 +99,3 @@ function wave_resize_featured_image($post_id, $width, $height=null, $zc=1 ) {
 	$url = wave_resize_featured_image_url($post_id, $width, $height, $zc);
 	return '<img src="'.$url.'" width="'.esc_attr( $width ).'" class="attachment-resized" />';
 }
-

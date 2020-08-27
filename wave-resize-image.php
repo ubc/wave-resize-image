@@ -97,5 +97,14 @@ function wave_resize_featured_image_url( $post_id, $width, $height=null, $zc=1 )
 function wave_resize_featured_image($post_id, $width, $height=null, $zc=1 ) {
 
 	$url = wave_resize_featured_image_url($post_id, $width, $height, $zc);
-	return '<img src="'.$url.'" width="'.esc_attr( $width ).'" class="attachment-resized" />';
+	$attachment_id = get_post_thumbnail_id( $post_id );
+
+	// If the post does not have a thumbnail, return nothing.
+	if( empty( $attachment_id ) ) {
+		return;
+	}
+
+	$alt = get_post_meta( $attachment_id, '_wp_attachment_image_alt', true );
+
+	return '<img src="'. esc_url( $url ) .'" width="' . esc_attr( $width ) . '" class="attachment-resized" alt="' . esc_attr( $alt ) . '" />';
 }

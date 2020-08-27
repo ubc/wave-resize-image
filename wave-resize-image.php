@@ -106,5 +106,5 @@ function wave_resize_featured_image($post_id, $width, $height=null, $zc=1 ) {
 
 	$alt = get_post_meta( $attachment_id, '_wp_attachment_image_alt', true );
 
-	return '<img src="'.$url.'" width="'.esc_attr( $width ).'" class="attachment-resized" alt="' . $alt . '" />';
+	return '<img src="'. esc_url( $url ) .'" width="' . esc_attr( $width ) . '" class="attachment-resized" alt="' . esc_attr( $alt ) . '" />';
 }

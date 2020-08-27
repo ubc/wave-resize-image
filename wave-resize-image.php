@@ -108,5 +108,3 @@ function wave_resize_featured_image($post_id, $width, $height=null, $zc=1 ) {
 
 	return '<img src="'.$url.'" width="'.esc_attr( $width ).'" class="attachment-resized" alt="' . $alt . '" />';
 }
-
-echo wave_resize_featured_image( 806, 300, 200 );
